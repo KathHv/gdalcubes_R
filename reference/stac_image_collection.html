@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Helper function to define packed data exports by min / max values — pack_minmax • gdalcubes</title>
+<title>Create an image collection from a STAC feature collection — stac_image_collection • gdalcubes</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="Helper function to define packed data exports by min / max values — pack_minmax" />
-<meta property="og:description" content="This function can be used to define packed exports in write_ncdf
-and write_tif. It will generate scale and offset values with maximum precision (unless simplify=TRUE)." />
+<meta property="og:title" content="Create an image collection from a STAC feature collection — stac_image_collection" />
+<meta property="og:description" content="This function creates an image collection from a STAC API collection response. It does not
+need to read any image data. Additionally, bands can be filtered and asset links can be transformed to make them
+readable for GDAL." />
 
 
 
@@ -124,65 +125,70 @@ and write_tif. It will generate scale and offset values with maximum precision (
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Helper function to define packed data exports by min / max values</h1>
-    <small class="dont-index">Source: <a href='https://github.com/appelmar/gdalcubes_R/blob/master/R/cube.R'><code>R/cube.R</code></a></small>
-    <div class="hidden name"><code>pack_minmax.Rd</code></div>
+    <h1>Create an image collection from a STAC feature collection</h1>
+    <small class="dont-index">Source: <a href='https://github.com/appelmar/gdalcubes_R/blob/master/R/stac.R'><code>R/stac.R</code></a></small>
+    <div class="hidden name"><code>stac_image_collection.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function can be used to define packed exports in <code><a href='write_ncdf.html'>write_ncdf</a></code>
-and <code><a href='write_tif.html'>write_tif</a></code>. It will generate scale and offset values with maximum precision (unless simplify=TRUE).</p>
+    <p>This function creates an image collection from a STAC API collection response. It does not
+need to read any image data. Additionally, bands can be filtered and asset links can be transformed to make them
+readable for GDAL.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pack_minmax</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"int16"</span>, <span class='va'>min</span>, <span class='va'>max</span>, simplify <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>stac_image_collection</span><span class='op'>(</span>
+  <span class='va'>s</span>,
+  out_file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".sqlite"</span><span class='op'>)</span>,
+  asset_names <span class='op'>=</span> <span class='cn'>NULL</span>,
+  asset_regex <span class='op'>=</span> <span class='cn'>NULL</span>,
+  url_fun <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>     <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"/vsicurl/"</span>, <span class='va'>x</span><span class='op'>)</span> <span class='op'>}</span>,
+  property_filter <span class='op'>=</span> <span class='cn'>NULL</span>,
+  skip_image_metadata <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>type</th>
-      <td><p>target data type of packed values (one of "uint8", "uint16", "uint32", "int16", or "int32")</p></td>
+      <th>s</th>
+      <td><p>STAC feature collection</p></td>
     </tr>
     <tr>
-      <th>min</th>
-      <td><p>numeric; minimum value(s) of original values, will be packed to the 2nd lowest value of the target data type</p></td>
+      <th>out_file</th>
+      <td><p>optional name of the output SQLite database file, defaults to a temporary file</p></td>
     </tr>
     <tr>
-      <th>max</th>
-      <td><p>numeric; maximum value(s) in original scale, will be packed to the highest value of the target data type</p></td>
+      <th>asset_names</th>
+      <td><p>character vector with names of assets (e.g., bands) to be used, other assets will be ignored. By default (NULL), all asset names with "eo:bands" attributes will be used</p></td>
     </tr>
     <tr>
-      <th>simplify</th>
-      <td><p>logical; round resulting scale and offset to power of 10 values</p></td>
+      <th>asset_regex</th>
+      <td><p>length 1 character defining a regular expression asset names must match to be considered</p></td>
+    </tr>
+    <tr>
+      <th>url_fun</th>
+      <td><p>optional function to modify URLs of assets, e.g, to add /vsicurl/ to URLS (the default)</p></td>
+    </tr>
+    <tr>
+      <th>property_filter</th>
+      <td><p>optional function to filter STAC items (images) by their properties; see Details</p></td>
+    </tr>
+    <tr>
+      <th>skip_image_metadata</th>
+      <td><p>logical, if TRUE per-image metadata (STAC item properties) will not be added to the image collection</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Nodata values will be mapped to the lowest value of the target data type.</p>
-<p>Arguments min and max must have length 1 or length equal to the number of bands of the data cube to be exported. In the former
-case, the same values are used for all bands of the exported target cube, whereas the latter case allows to use different 
-ranges for different bands.</p>
+    <p>The property_filter argument can be used to filter images by metadata such as cloud coverage. 
+The functions receives all properties of a STAC item (image) as input list and is expected to produce a single logical value,
+where an image will be ignored if the function returns FALSE.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Using simplify=TRUE will round scale values to the next smaller power of 10.</p>
+    <p>Currently, bbox results are expected to be WGS84 coordinates, even if bbox-crs is given in the STAC response.</p>
+<p>This function is experimental.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>ndvi_packing</span> <span class='op'>=</span> <span class='fu'>pack_minmax</span><span class='op'>(</span>type<span class='op'>=</span><span class='st'>"int16"</span>, min<span class='op'>=</span><span class='op'>-</span><span class='fl'>1</span>, max<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>ndvi_packing</span>
-</div><div class='output co'>#&gt; $type
-#&gt; [1] "int16"
-#&gt; 
-#&gt; $offset
-#&gt; [1] 0
-#&gt; 
-#&gt; $scale
-#&gt; [1] 3.051851e-05
-#&gt; 
-#&gt; $nodata
-#&gt; [1] -32768
-#&gt; </div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

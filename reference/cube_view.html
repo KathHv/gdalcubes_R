@@ -74,7 +74,7 @@ extent, read image data at the defined resolution, and warp / reproject images t
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gdalcubes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ extent, read image data at the defined resolution, and warp / reproject images t
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,7 +108,7 @@ extent, read image data at the defined resolution, and warp / reproject images t
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/appelmar/gdalcubes_R/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -136,20 +136,20 @@ They are used to access image collections as on-demand data cubes. The data cube
 extent, read image data at the defined resolution, and warp / reproject images to the target srs automatically.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cube_view</span>(
-  <span class='no'>view</span>,
-  <span class='no'>extent</span>,
-  <span class='no'>srs</span>,
-  <span class='no'>nx</span>,
-  <span class='no'>ny</span>,
-  <span class='no'>nt</span>,
-  <span class='no'>dx</span>,
-  <span class='no'>dy</span>,
-  <span class='no'>dt</span>,
-  <span class='no'>aggregation</span>,
-  <span class='no'>resampling</span>,
-  <span class='kw'>keep.asp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cube_view</span><span class='op'>(</span>
+  <span class='va'>view</span>,
+  <span class='va'>extent</span>,
+  <span class='va'>srs</span>,
+  <span class='va'>nx</span>,
+  <span class='va'>ny</span>,
+  <span class='va'>nt</span>,
+  <span class='va'>dx</span>,
+  <span class='va'>dy</span>,
+  <span class='va'>dt</span>,
+  <span class='va'>aggregation</span>,
+  <span class='va'>resampling</span>,
+  keep.asp <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,14 +219,15 @@ if the spatial extent covers an area of 1km x 1km and dx = dy = 300m, the extent
 a diagnostic message.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='no'>L8_files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"L8NY18"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"gdalcubes"</span>),
-                        <span class='st'>".TIF"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
- <span class='no'>L8.col</span> <span class='kw'>=</span> <span class='fu'><a href='create_image_collection.html'>create_image_collection</a></span>(<span class='no'>L8_files</span>, <span class='st'>"L8_L1TP"</span>)
-
+    <pre class="examples"><div class='input'> <span class='va'>L8_files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"L8NY18"</span>, package <span class='op'>=</span> <span class='st'>"gdalcubes"</span><span class='op'>)</span>,
+                        <span class='st'>".TIF"</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span>, full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+ <span class='va'>L8.col</span> <span class='op'>=</span> <span class='fu'><a href='create_image_collection.html'>create_image_collection</a></span><span class='op'>(</span><span class='va'>L8_files</span>, <span class='st'>"L8_L1TP"</span><span class='op'>)</span>
+ 
  <span class='co'># 1. Create a new data cube view specification</span>
- <span class='no'>v</span> <span class='kw'>=</span> <span class='fu'>cube_view</span>(<span class='kw'>extent</span><span class='kw'>=</span><span class='fu'><a href='extent.html'>extent</a></span>(<span class='no'>L8.col</span>,<span class='st'>"EPSG:4326"</span>), <span class='kw'>srs</span><span class='kw'>=</span><span class='st'>"EPSG:4326"</span>, <span class='kw'>dt</span><span class='kw'>=</span><span class='st'>"P1M"</span>,
-           <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>1000</span>, <span class='kw'>ny</span><span class='kw'>=</span><span class='fl'>500</span>, <span class='kw'>aggregation</span> <span class='kw'>=</span> <span class='st'>"mean"</span>, <span class='kw'>resampling</span><span class='kw'>=</span><span class='st'>"bilinear"</span>)
- <span class='no'>v</span></div><div class='output co'>#&gt; A data cube view object
+ <span class='va'>v</span> <span class='op'>=</span> <span class='fu'>cube_view</span><span class='op'>(</span>extent<span class='op'>=</span><span class='fu'><a href='extent.html'>extent</a></span><span class='op'>(</span><span class='va'>L8.col</span>,<span class='st'>"EPSG:4326"</span><span class='op'>)</span>, srs<span class='op'>=</span><span class='st'>"EPSG:4326"</span>, dt<span class='op'>=</span><span class='st'>"P1M"</span>, 
+           nx<span class='op'>=</span><span class='fl'>1000</span>, ny<span class='op'>=</span><span class='fl'>500</span>, aggregation <span class='op'>=</span> <span class='st'>"mean"</span>, resampling<span class='op'>=</span><span class='st'>"bilinear"</span><span class='op'>)</span>
+ <span class='va'>v</span>
+</div><div class='output co'>#&gt; A data cube view object
 #&gt; 
 #&gt; Dimensions:
 #&gt;          low      high count  pixel_size
@@ -239,7 +240,8 @@ a diagnostic message.</p>
 #&gt; Spatial resampling method: "bilinear"
 #&gt; </div><div class='input'>
  <span class='co'># 2. overwrite parts of an existing data cube view</span>
- <span class='no'>vnew</span> <span class='kw'>=</span> <span class='fu'>cube_view</span>(<span class='no'>v</span>, <span class='kw'>dt</span><span class='kw'>=</span><span class='st'>"P1M"</span>)</div></pre>
+ <span class='va'>vnew</span> <span class='op'>=</span> <span class='fu'>cube_view</span><span class='op'>(</span><span class='va'>v</span>, dt<span class='op'>=</span><span class='st'>"P1M"</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -255,7 +257,7 @@ a diagnostic message.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

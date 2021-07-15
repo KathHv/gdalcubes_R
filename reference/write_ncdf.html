@@ -73,7 +73,7 @@ file(s) uses the enhanced netCDF-4 format, supporting chunking and compression."
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gdalcubes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ file(s) uses the enhanced netCDF-4 format, supporting chunking and compression."
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -107,7 +107,7 @@ file(s) uses the enhanced netCDF-4 format, supporting chunking and compression."
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/appelmar/gdalcubes_R/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -134,15 +134,15 @@ file(s) uses the enhanced netCDF-4 format, supporting chunking and compression."
 file(s) uses the enhanced netCDF-4 format, supporting chunking and compression.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_ncdf</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>fname</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"gdalcubes"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".nc"</span>),
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>write_json_descr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>with_VRT</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>pack</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>chunked</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>write_ncdf</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  fname <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='st'>"gdalcubes"</span>, fileext <span class='op'>=</span> <span class='st'>".nc"</span><span class='op'>)</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  write_json_descr <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  with_VRT <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pack <span class='op'>=</span> <span class='cn'>NULL</span>,
+  chunked <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,61 +198,24 @@ original scale.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://www.unidata.ucar.edu/software/netcdf/docs/'>https://www.unidata.ucar.edu/software/netcdf/docs/</a></p>
-<p><code><a href='gdalcubes_set_ncdf_compression.html'>gdalcubes_set_ncdf_compression</a></code></p>
+<p><code><a href='gdalcubes_options.html'>gdalcubes_options</a></code></p>
 <p><code><a href='pack_minmax.html'>pack_minmax</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create image collection from example Landsat data only </span>
 <span class='co'># if not already done in other examples</span>
-<span class='kw'>if</span> (!<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"L8.db"</span>))) {
-  <span class='no'>L8_files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"L8NY18"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"gdalcubes"</span>),
-                         <span class='st'>".TIF"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-  <span class='fu'><a href='create_image_collection.html'>create_image_collection</a></span>(<span class='no'>L8_files</span>, <span class='st'>"L8_L1TP"</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"L8.db"</span>))
-}</div><div class='output co'>#&gt; A GDAL image collection object, referencing 19 images with 12  bands
-#&gt; Images:
-#&gt;                                       name      left      top   bottom
-#&gt; 1 LC08_L1TP_013032_20180131_20180207_01_T1 -74.67898 41.39099 39.25027
-#&gt; 2 LC08_L1TP_013032_20180405_20180417_01_T1 -74.70333 41.39106 39.25080
-#&gt; 3 LC08_L1TP_013032_20180421_20180502_01_T1 -74.70681 41.39107 39.25098
-#&gt; 4 LC08_L1TP_013032_20180710_20180717_01_T1 -74.66854 41.39096 39.24991
-#&gt; 5 LC08_L1TP_013032_20180827_20180911_01_T1 -74.67202 41.39097 39.25000
-#&gt; 6 LC08_L1TP_013032_20181030_20181115_01_T1 -74.69637 41.39104 39.25062
-#&gt;       right            datetime
-#&gt; 1 -71.92546 2018-01-31T00:00:00
-#&gt; 2 -71.94695 2018-04-05T00:00:00
-#&gt; 3 -71.95411 2018-04-21T00:00:00
-#&gt; 4 -71.91114 2018-07-10T00:00:00
-#&gt; 5 -71.91472 2018-08-27T00:00:00
-#&gt; 6 -71.93979 2018-10-30T00:00:00
-#&gt;                                                 srs
-#&gt; 1 +proj=utm +zone=18 +datum=WGS84 +units=m +no_defs
-#&gt; 2 +proj=utm +zone=18 +datum=WGS84 +units=m +no_defs
-#&gt; 3 +proj=utm +zone=18 +datum=WGS84 +units=m +no_defs
-#&gt; 4 +proj=utm +zone=18 +datum=WGS84 +units=m +no_defs
-#&gt; 5 +proj=utm +zone=18 +datum=WGS84 +units=m +no_defs
-#&gt; 6 +proj=utm +zone=18 +datum=WGS84 +units=m +no_defs
-#&gt; [ omitted 13 images ] 
-#&gt; 
-#&gt; Bands:
-#&gt;    name offset scale unit   nodata image_count
-#&gt; 1   B01      0     1      0.000000          19
-#&gt; 2   B02      0     1      0.000000          19
-#&gt; 3   B03      0     1      0.000000          19
-#&gt; 4   B04      0     1      0.000000          19
-#&gt; 5   B05      0     1      0.000000          19
-#&gt; 6   B06      0     1      0.000000          19
-#&gt; 7   B07      0     1      0.000000          19
-#&gt; 8   B08      0     1      0.000000          19
-#&gt; 9   B09      0     1      0.000000          19
-#&gt; 10  B10      0     1      0.000000          19
-#&gt; 11  B11      0     1      0.000000          19
-#&gt; 12  BQA      0     1                        19
-#&gt; </div><div class='input'>
-<span class='no'>L8.col</span> <span class='kw'>=</span> <span class='fu'><a href='image_collection.html'>image_collection</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"L8.db"</span>))
-<span class='no'>v</span> <span class='kw'>=</span> <span class='fu'><a href='cube_view.html'>cube_view</a></span>(<span class='kw'>extent</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>left</span><span class='kw'>=</span><span class='fl'>388941.2</span>, <span class='kw'>right</span><span class='kw'>=</span><span class='fl'>766552.4</span>,
-              <span class='kw'>bottom</span><span class='kw'>=</span><span class='fl'>4345299</span>, <span class='kw'>top</span><span class='kw'>=</span><span class='fl'>4744931</span>, <span class='kw'>t0</span><span class='kw'>=</span><span class='st'>"2018-04"</span>, <span class='kw'>t1</span><span class='kw'>=</span><span class='st'>"2018-04"</span>),
-              <span class='kw'>srs</span><span class='kw'>=</span><span class='st'>"EPSG:32618"</span>, <span class='kw'>nx</span> <span class='kw'>=</span> <span class='fl'>497</span>, <span class='kw'>ny</span><span class='kw'>=</span><span class='fl'>526</span>, <span class='kw'>dt</span><span class='kw'>=</span><span class='st'>"P1M"</span>)
-<span class='fu'>write_ncdf</span>(<span class='fu'><a href='select_bands.html'>select_bands</a></span>(<span class='fu'><a href='raster_cube.html'>raster_cube</a></span>(<span class='no'>L8.col</span>, <span class='no'>v</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"B04"</span>, <span class='st'>"B05"</span>)), <span class='kw'>fname</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".nc"</span>))</div></pre>
+<span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"L8.db"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>L8_files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"L8NY18"</span>, package <span class='op'>=</span> <span class='st'>"gdalcubes"</span><span class='op'>)</span>,
+                         <span class='st'>".TIF"</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span>, full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  <span class='fu'><a href='create_image_collection.html'>create_image_collection</a></span><span class='op'>(</span><span class='va'>L8_files</span>, <span class='st'>"L8_L1TP"</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"L8.db"</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='op'>}</span>
+
+<span class='va'>L8.col</span> <span class='op'>=</span> <span class='fu'><a href='image_collection.html'>image_collection</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"L8.db"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>v</span> <span class='op'>=</span> <span class='fu'><a href='cube_view.html'>cube_view</a></span><span class='op'>(</span>extent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left<span class='op'>=</span><span class='fl'>388941.2</span>, right<span class='op'>=</span><span class='fl'>766552.4</span>, 
+              bottom<span class='op'>=</span><span class='fl'>4345299</span>, top<span class='op'>=</span><span class='fl'>4744931</span>, t0<span class='op'>=</span><span class='st'>"2018-04"</span>, t1<span class='op'>=</span><span class='st'>"2018-04"</span><span class='op'>)</span>,
+              srs<span class='op'>=</span><span class='st'>"EPSG:32618"</span>, nx <span class='op'>=</span> <span class='fl'>497</span>, ny<span class='op'>=</span><span class='fl'>526</span>, dt<span class='op'>=</span><span class='st'>"P1M"</span><span class='op'>)</span>
+<span class='fu'>write_ncdf</span><span class='op'>(</span><span class='fu'><a href='select_bands.html'>select_bands</a></span><span class='op'>(</span><span class='fu'><a href='raster_cube.html'>raster_cube</a></span><span class='op'>(</span><span class='va'>L8.col</span>, <span class='va'>v</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B04"</span>, <span class='st'>"B05"</span><span class='op'>)</span><span class='op'>)</span>, fname<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".nc"</span><span class='op'>)</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -268,7 +231,7 @@ original scale.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

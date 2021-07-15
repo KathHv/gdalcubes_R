@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gdalcubes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/appelmar/gdalcubes_R/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -126,6 +126,30 @@
       <small>Source: <a href='https://github.com/appelmar/gdalcubes_R/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="gdalcubes-040-2021-07-08" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.0">
+<a href="#gdalcubes-040-2021-07-08" class="anchor"></a>gdalcubes 0.4.0 (2021-07-08)<small> 2021-07-13 </small>
+</h1>
+<ul>
+<li>new operator <code><a href="../reference/ncdf_cube.html">ncdf_cube()</a></code> to read data cubes from (intermediate) results</li>
+<li>new operator <code><a href="../reference/rename_bands.html">rename_bands()</a></code> to change band names</li>
+<li>image collection creation from STAC API queries with <code><a href="../reference/stac_image_collection.html">stac_image_collection()</a></code>
+</li>
+<li>progress bar can now be disabled with <code><a href="../reference/gdalcubes_options.html">gdalcubes_options()</a></code>
+</li>
+<li>removed <code>gdalcubes_set_threads()</code> in favor of <code><a href="../reference/gdalcubes_options.html">gdalcubes_options()</a></code>
+</li>
+<li>removed <code>gdalcubes_debug_output()</code> in favor of <code><a href="../reference/gdalcubes_options.html">gdalcubes_options()</a></code>
+</li>
+<li>removed <code>gdalcubes_set_ncdf_compression()</code> in favor of <code><a href="../reference/gdalcubes_options.html">gdalcubes_options()</a></code>
+</li>
+<li>removed <code>gdalcubes_use_cache()</code> in favor of <code><a href="../reference/gdalcubes_options.html">gdalcubes_options()</a></code>
+</li>
+<li>removed image collection operations <code>translate_COG()</code> and <code>translate_gtiff()</code>
+</li>
+<li>fix installation issues on MacOS and GCC11 warnings</li>
+</ul>
+</div>
     <div id="gdalcubes-031-2020-08-25" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.1">
 <a href="#gdalcubes-031-2020-08-25" class="anchor"></a>gdalcubes 0.3.1 (2020-08-25)<small> 2020-08-27 </small>
@@ -152,7 +176,7 @@
 </li>
 <li>Apply an R function on time series without reduction using <code><a href="../reference/apply_time.html">apply_time()</a></code>
 </li>
-<li>Batch format conversion of images in a collection with <code><a href="../reference/translate_cog.html">translate_cog()</a></code> and <code><a href="../reference/translate_gtiff.html">translate_gtiff()</a></code>
+<li>Batch format conversion of images in a collection with <code>translate_cog()</code> and <code>translate_gtiff()</code>
 </li>
 </ul>
 </div>
@@ -253,7 +277,7 @@
 <li>add <code><a href="../reference/as_array.html">as_array()</a></code> function to convert a data cube to a native in-memory R array</li>
 <li>new operator <code><a href="../reference/fill_time.html">fill_time()</a></code> fills NA pixels of data cubes based on time series interpolation</li>
 <li>changed image collection database schema, existing collections must be recreated</li>
-<li>new global configuration function <code><a href="../reference/gdalcubes_options.html">gdalcubes_options()</a></code> as a replacement to <code><a href="../reference/gdalcubes_set_threads.html">gdalcubes_set_threads()</a></code> etc.</li>
+<li>new global configuration function <code><a href="../reference/gdalcubes_options.html">gdalcubes_options()</a></code> as a replacement to <code>gdalcubes_set_threads()</code> etc.</li>
 <li>new function <code><a href="../reference/add_images.html">add_images()</a></code> adds images to an existing image collection</li>
 </ul>
 </div>
@@ -312,7 +336,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

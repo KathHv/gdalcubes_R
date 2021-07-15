@@ -74,7 +74,7 @@ a new image collection file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gdalcubes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.9999</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ a new image collection file." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,7 +108,7 @@ a new image collection file." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/appelmar/gdalcubes_R/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -183,7 +183,7 @@ whereas the former uses the normal GTiff driver. Depending on additional creatio
 }
 
 <span class='no'>L8.col</span> <span class='kw'>=</span> <span class='fu'><a href='image_collection.html'>image_collection</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"L8.db"</span>))
-<span class='no'>L8.col</span></div><div class='output co'>#&gt; A GDAL image collection object, referencing 19 images with 12  bands
+<span class='no'>L8.col</span></div><div class='output co'>#&gt; Image collection object, referencing 19 images with 12  bands
 #&gt; Images:
 #&gt;                                       name      left      top   bottom
 #&gt; 1 LC08_L1TP_013032_20180131_20180207_01_T1 -74.67898 41.39099 39.25027
@@ -225,7 +225,7 @@ whereas the former uses the normal GTiff driver. Depending on additional creatio
 #&gt; </div><div class='input'>
 <span class='co'># \donttest{</span>
 <span class='no'>L8.tif.col</span> <span class='kw'>=</span> <span class='fu'>translate_gtiff</span>(<span class='no'>L8.col</span>)
-<span class='no'>L8.tif.col</span></div><div class='output co'>#&gt; [1] "/tmp/Rtmpe90UjT/image_collection_48b42626fe04/L8.db"</div><div class='input'># }
+<span class='no'>L8.tif.col</span></div><div class='output co'>#&gt; [1] "/tmp/RtmpeTofcL/image_collection_7feef2c342aa9/L8.db"</div><div class='input'># }
 
 </div></pre>
   </div>

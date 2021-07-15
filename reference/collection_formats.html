@@ -8,21 +8,29 @@
 
 <title>List predefined image collection formats — collection_formats • gdalcubes</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="List predefined image collection formats — collection_formats" />
 
+<meta property="og:title" content="List predefined image collection formats — collection_formats" />
 <meta property="og:description" content="gdalcubes comes with some predefined collection formats e.g. to scan Sentinel 2 data. This function lists available formats  including brief descriptions." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gdalcubes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,11 +103,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/appelmar/gdalcubes_R">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/appelmar/gdalcubes_R/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +117,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -120,13 +129,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>gdalcubes comes with some predefined collection formats e.g. to scan Sentinel 2 data. This function lists available formats  including brief descriptions.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>collection_formats</span>(<span class='kw'>print</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>collection_formats</span><span class='op'>(</span>print <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -135,22 +142,21 @@
       <td><p>logical; should available formats and their descriptions be printed nicely, defaults to TRUE</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data.frame with columns <code>name</code> and <code>description</code> where the former describes the unique identifier that can be used in <code>create_image_collection</code> and the
 latter gives a brief description of the format.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Image collection formats define how individual files / GDAL datasets relate to an image collection, i.e., 
 which bands they contain, to which image they belong, and how to derive aquisition date/time.
 They are described as a set of regular expressions in a JSON file and used by gdalcubes to extract this information 
 from the paths and/or filenames.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>collection_formats</span>()</div><div class='output co'>#&gt;    CHIRPS_v2_0_daily_p05_tif | Image collection format for CHIRPS v 2.0 daily
+    <pre class="examples"><div class='input'><span class='fu'>collection_formats</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    CHIRPS_v2_0_daily_p05_tif | Image collection format for CHIRPS v 2.0 daily
 #&gt;                              | global precipitation dataset (0.05 degrees
 #&gt;                              | resolution) from GeoTIFFs, expects list of .tif
 #&gt;                              | or .tif.gz files as input. [TAGS: CHIRPS,
@@ -160,11 +166,25 @@ from the paths and/or filenames.</p>
 #&gt;                              | resolution) from GeoTIFFs, expects list of .tif
 #&gt;                              | or .tif.gz files as input. [TAGS: CHIRPS,
 #&gt;                              | precipitation]
+#&gt;            ESA_CCI_SM_ACTIVE | Collection format for ESA CCI soil moisture
+#&gt;                              | active product (version 4.7) [TAGS: Soil
+#&gt;                              | Moisture, ESA, CCI]
+#&gt;           ESA_CCI_SM_PASSIVE | Collection format for ESA CCI soil moisture
+#&gt;                              | passive product (version 4.7) [TAGS: Soil
+#&gt;                              | Moisture, ESA, CCI]
+#&gt;    GPM_IMERG_3B_DAY_GIS_V06A | Collection format for daily
+#&gt;                              | IMERG_3B_DAY_GIS_V06A data [TAGS: Precipitation,
+#&gt;                              | GPM, IMERG]
 #&gt;                      L8_L1TP | Collection format for Landsat 8 Level 1 TP
 #&gt;                              | product [TAGS: Landsat, USGS, Level 1, NASA]
 #&gt;                        L8_SR | Collection format for Landsat 8 surface
 #&gt;                              | reflectance product [TAGS: Landsat, USGS, Level
 #&gt;                              | 2, NASA, surface reflectance]
+#&gt;                      MCD64A1 | Collection format for the MODIS MCD64A1 product
+#&gt;                              | (burned area by day) [TAGS: MODIS, Fire]
+#&gt;                      MxD09GA | Collection format for selected bands from the
+#&gt;                              | MODIS MxD09GA (Aqua and Terra) product [TAGS:
+#&gt;                              | MODIS, surface reflectance]
 #&gt;                      MxD10A2 | Collection format for selected bands from the
 #&gt;                              | MODIS MxD10A2 (Aqua and Terra) v006 Snow Cover
 #&gt;                              | product [TAGS: MODIS, Snow Cover]
@@ -214,20 +234,13 @@ from the paths and/or filenames.</p>
 #&gt;                              | data as downloaded from Theia. [TAGS: Sentinel,
 #&gt;                              | ESA, Flat Reflectance, Theia]</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -235,13 +248,16 @@ from the paths and/or filenames.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

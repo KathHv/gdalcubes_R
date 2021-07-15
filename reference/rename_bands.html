@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an image collection from a set of GDAL datasets or files — create_image_collection • gdalcubes</title>
+<title>Rename bands of a data cube — rename_bands • gdalcubes</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Create an image collection from a set of GDAL datasets or files — create_image_collection" />
-<meta property="og:description" content="This function iterates over files or GDAL dataset identifiers and extracts datetime, image identifiers, and band information according to a given
-collection format." />
+<meta property="og:title" content="Rename bands of a data cube — rename_bands" />
+<meta property="og:description" content="Create a proxy data cube, which renames specific bands of a data cube." />
 
 
 
@@ -124,74 +123,43 @@ collection format." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an image collection from a set of GDAL datasets or files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/appelmar/gdalcubes_R/blob/master/R/image_collection.R'><code>R/image_collection.R</code></a></small>
-    <div class="hidden name"><code>create_image_collection.Rd</code></div>
+    <h1>Rename bands of a data cube</h1>
+    <small class="dont-index">Source: <a href='https://github.com/appelmar/gdalcubes_R/blob/master/R/rename_bands.R'><code>R/rename_bands.R</code></a></small>
+    <div class="hidden name"><code>rename_bands.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function iterates over files or GDAL dataset identifiers and extracts datetime, image identifiers, and band information according to a given
-collection format.</p>
+    <p>Create a proxy data cube, which renames specific bands of a data cube.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_image_collection</span><span class='op'>(</span>
-  <span class='va'>files</span>,
-  format <span class='op'>=</span> <span class='cn'>NULL</span>,
-  out_file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".sqlite"</span><span class='op'>)</span>,
-  date_time <span class='op'>=</span> <span class='cn'>NULL</span>,
-  band_names <span class='op'>=</span> <span class='cn'>NULL</span>,
-  use_subdatasets <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  unroll_archives <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>rename_bands</span><span class='op'>(</span><span class='va'>cube</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>files</th>
-      <td><p>character vector with paths to image files on disk or any GDAL dataset identifiers (including virtual file systems and higher level drivers or GDAL subdatasets)</p></td>
+      <th>cube</th>
+      <td><p>source data cube</p></td>
     </tr>
     <tr>
-      <th>format</th>
-      <td><p>collection format, can be either a name to use predefined formats (as output from <code><a href='collection_formats.html'>collection_formats</a></code>) or a path to a custom JSON format description file</p></td>
-    </tr>
-    <tr>
-      <th>out_file</th>
-      <td><p>optional name of the output SQLite database file, defaults to a temporary file</p></td>
-    </tr>
-    <tr>
-      <th>date_time</th>
-      <td><p>vector with date/ time for files; can be of class character, Date, or POSIXct (argument is only applicable for image collections without collection format)</p></td>
-    </tr>
-    <tr>
-      <th>band_names</th>
-      <td><p>character vector with band names, length must match the number of bands in provided files (argument is only applicable for image collections without collection format)</p></td>
-    </tr>
-    <tr>
-      <th>use_subdatasets</th>
-      <td><p>logical; use GDAL subdatasets of provided files (argument is only applicable for image collections without collection format)</p></td>
-    </tr>
-    <tr>
-      <th>unroll_archives</th>
-      <td><p>automatically convert .zip, .tar archives and .gz compressed files to GDAL virtual file system dataset identifiers (e.g. by prepending /vsizip/) and add contained files to the list of considered files</p></td>
-    </tr>
-    <tr>
-      <th>quiet</th>
-      <td><p>logical; if TRUE, do not print resulting image collection if return value is not assigned to a variable</p></td>
+      <th>...</th>
+      <td><p>named arguments with bands that will be renamed, see Details</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>image collection proxy object, which can be used to create a data cube using <code><a href='raster_cube.html'>raster_cube</a></code></p>
+    <p>proxy data cube object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>An image collection is a simple SQLite database file that indexes and references existing image files / GDAL dataset identifiers.</p>
-<p>Collections can be created in two different ways: First, if a collection format is specified (argument <code>format</code>), date/time, bands, and metadata are automatically
-extracted from provided files / GDAL datasets. Second, image collections can be created without collection format by manually specifying date/time of images 
-(argument <code>date_time</code>) and (optional) names of bands. In this case, however, all provided images must contain the same bands. If this is not 
-possible for a dataset, a collection format must be used.</p>
+    <p>The result data cube always contains the same number of bands. No subsetting is 
+done if only names for some of the bands are provided. In this case, only 
+provided bands are renamed whereas other bands keep their original name. 
+Variable arguments must be named by the old band name and the new names must be provided
+as simple character values (see example).</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>This function returns a proxy object, i.e., it will not start any computations besides deriving the shape of the result.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create image collection from example Landsat data only </span>
@@ -199,8 +167,45 @@ possible for a dataset, a collection format must be used.</p>
 <span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"L8.db"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='va'>L8_files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"L8NY18"</span>, package <span class='op'>=</span> <span class='st'>"gdalcubes"</span><span class='op'>)</span>,
                          <span class='st'>".TIF"</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span>, full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-  <span class='fu'>create_image_collection</span><span class='op'>(</span><span class='va'>L8_files</span>, <span class='st'>"L8_L1TP"</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"L8.db"</span><span class='op'>)</span><span class='op'>)</span> 
+  <span class='fu'><a href='create_image_collection.html'>create_image_collection</a></span><span class='op'>(</span><span class='va'>L8_files</span>, <span class='st'>"L8_L1TP"</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"L8.db"</span><span class='op'>)</span><span class='op'>)</span> 
 <span class='op'>}</span>
+
+<span class='va'>L8.col</span> <span class='op'>=</span> <span class='fu'><a href='image_collection.html'>image_collection</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"L8.db"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>v</span> <span class='op'>=</span> <span class='fu'><a href='cube_view.html'>cube_view</a></span><span class='op'>(</span>extent<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left<span class='op'>=</span><span class='fl'>388941.2</span>, right<span class='op'>=</span><span class='fl'>766552.4</span>, 
+              bottom<span class='op'>=</span><span class='fl'>4345299</span>, top<span class='op'>=</span><span class='fl'>4744931</span>, t0<span class='op'>=</span><span class='st'>"2018-04"</span>, t1<span class='op'>=</span><span class='st'>"2018-07"</span><span class='op'>)</span>,
+              srs<span class='op'>=</span><span class='st'>"EPSG:32618"</span>, nx <span class='op'>=</span> <span class='fl'>497</span>, ny<span class='op'>=</span><span class='fl'>526</span>, dt<span class='op'>=</span><span class='st'>"P1M"</span><span class='op'>)</span>
+<span class='va'>L8.cube</span> <span class='op'>=</span> <span class='fu'><a href='raster_cube.html'>raster_cube</a></span><span class='op'>(</span><span class='va'>L8.col</span>, <span class='va'>v</span><span class='op'>)</span> 
+<span class='va'>L8.rgb</span> <span class='op'>=</span> <span class='fu'><a href='select_bands.html'>select_bands</a></span><span class='op'>(</span><span class='va'>L8.cube</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B02"</span>, <span class='st'>"B03"</span>, <span class='st'>"B04"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>L8.rgb</span>
+</div><div class='output co'>#&gt; A GDAL data cube proxy object
+#&gt; 
+#&gt; Dimensions:
+#&gt;        low     high count       pixel_size chunk_size
+#&gt; t  2018-04  2018-07     4              P1M          1
+#&gt; y  4345299  4744931   526 759.756653992395        256
+#&gt; x 388941.2 766552.4   497 759.781086519115        256
+#&gt; 
+#&gt; Bands:
+#&gt;   name offset scale nodata unit
+#&gt; 1  B02      0     1    NaN     
+#&gt; 2  B03      0     1    NaN     
+#&gt; 3  B04      0     1    NaN     
+#&gt; </div><div class='input'><span class='va'>L8.rgb</span> <span class='op'>=</span> <span class='fu'>rename_bands</span><span class='op'>(</span><span class='va'>L8.cube</span>, B02 <span class='op'>=</span> <span class='st'>"blue"</span>, B03 <span class='op'>=</span> <span class='st'>"green"</span>, B04 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+<span class='va'>L8.rgb</span>
+</div><div class='output co'>#&gt; A GDAL data cube proxy object
+#&gt; 
+#&gt; Dimensions:
+#&gt;        low     high count       pixel_size chunk_size
+#&gt; t  2018-04  2018-07     4              P1M          1
+#&gt; y  4345299  4744931   526 759.756653992395        256
+#&gt; x 388941.2 766552.4   497 759.781086519115        256
+#&gt; 
+#&gt; Bands:
+#&gt;    name offset scale nodata unit
+#&gt; 1  blue      0     1    NaN     
+#&gt; 2 green      0     1    NaN     
+#&gt; 3   red      0     1    NaN     
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

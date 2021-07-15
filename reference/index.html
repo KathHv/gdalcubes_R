@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gdalcubes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/appelmar/gdalcubes_R/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -298,12 +298,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="gdalcubes_debug_output.html">gdalcubes_debug_output()</a></code> </p>
-        </td>
-        <td><p>Enable or disable debug output from the gdalcubes C++ library</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="gdalcubes_gdal_has_geos.html">gdalcubes_gdal_has_geos()</a></code> </p>
         </td>
         <td><p>Check if GDAL was built with GEOS</p></td>
@@ -325,24 +319,6 @@
           <p><code><a href="gdalcubes_options.html">gdalcubes_options()</a></code> </p>
         </td>
         <td><p>Set or read global options of the gdalcubes package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gdalcubes_set_ncdf_compression.html">gdalcubes_set_ncdf_compression()</a></code> </p>
-        </td>
-        <td><p>Set compression level for netCDF files produced by gdalcubes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gdalcubes_set_threads.html">gdalcubes_set_threads()</a></code> </p>
-        </td>
-        <td><p>Set the number of threads for parallel data cube processing</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gdalcubes_use_cache.html">gdalcubes_use_cache()</a></code> </p>
-        </td>
-        <td><p>Enable or disable caching of cubes.</p></td>
       </tr><tr>
         
         <td>
@@ -385,6 +361,12 @@
           <p><code><a href="nbands.html">nbands()</a></code> </p>
         </td>
         <td><p>Query data cube properties</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ncdf_cube.html">ncdf_cube()</a></code> </p>
+        </td>
+        <td><p>Read a data cube from an existing netCDF file</p></td>
       </tr><tr>
         
         <td>
@@ -509,6 +491,12 @@ spatial dimensions</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="rename_bands.html">rename_bands()</a></code> </p>
+        </td>
+        <td><p>Rename bands of a data cube</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="select_bands.html">select_bands()</a></code> </p>
         </td>
         <td><p>Select bands of a data cube</p></td>
@@ -539,15 +527,9 @@ spatial dimensions</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="translate_cog.html">translate_cog()</a></code> </p>
+          <p><code><a href="stac_image_collection.html">stac_image_collection()</a></code> </p>
         </td>
-        <td><p>Convert complete image collections to cloud-optimized GeoTIFFs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="translate_gtiff.html">translate_gtiff()</a></code> </p>
-        </td>
-        <td><p>Convert complete image collections to cloud-optimized GeoTIFFs</p></td>
+        <td><p>Create an image collection from a STAC feature collection</p></td>
       </tr><tr>
         
         <td>
@@ -603,7 +585,7 @@ spatial dimensions</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

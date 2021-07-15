@@ -73,7 +73,7 @@ or not debug messages should be printed." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gdalcubes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ or not debug messages should be printed." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -107,7 +107,7 @@ or not debug messages should be printed." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/appelmar/gdalcubes_R/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -134,15 +134,16 @@ or not debug messages should be printed." />
 or not debug messages should be printed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gdalcubes_options</span>(
-  <span class='no'>...</span>,
-  <span class='no'>threads</span>,
-  <span class='no'>ncdf_compression_level</span>,
-  <span class='no'>debug</span>,
-  <span class='no'>cache</span>,
-  <span class='no'>ncdf_write_bounds</span>,
-  <span class='no'>use_overview_images</span>
-)</pre>
+    <pre class="usage"><span class='fu'>gdalcubes_options</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  <span class='va'>threads</span>,
+  <span class='va'>ncdf_compression_level</span>,
+  <span class='va'>debug</span>,
+  <span class='va'>cache</span>,
+  <span class='va'>ncdf_write_bounds</span>,
+  <span class='va'>use_overview_images</span>,
+  <span class='va'>show_progress</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,6 +176,10 @@ or not debug messages should be printed.</p>
       <th>use_overview_images</th>
       <td><p>logical; if FALSE, all images are read on original resolution and existing overviews will be ignored</p></td>
     </tr>
+    <tr>
+      <th>show_progress</th>
+      <td><p>logical; if TRUE, a progress bar will be shown for actual computations</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -188,12 +193,13 @@ rerunning the full data cube operation chain.</p>
 <p>Passing no arguments will return the current options as a list.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gdalcubes_options</span>(<span class='kw'>threads</span><span class='kw'>=</span><span class='fl'>4</span>) <span class='co'># set the number of threads</span>
-<span class='fu'>gdalcubes_options</span>() <span class='co'># print current options</span></div><div class='output co'>#&gt; $threads
+    <pre class="examples"><div class='input'><span class='fu'>gdalcubes_options</span><span class='op'>(</span>threads<span class='op'>=</span><span class='fl'>4</span><span class='op'>)</span> <span class='co'># set the number of threads</span>
+<span class='fu'>gdalcubes_options</span><span class='op'>(</span><span class='op'>)</span> <span class='co'># print current options</span>
+</div><div class='output co'>#&gt; $threads
 #&gt; [1] 4
 #&gt; 
 #&gt; $ncdf_compression_level
-#&gt; [1] 0
+#&gt; [1] 1
 #&gt; 
 #&gt; $debug
 #&gt; [1] FALSE
@@ -206,7 +212,11 @@ rerunning the full data cube operation chain.</p>
 #&gt; 
 #&gt; $use_overview_images
 #&gt; [1] TRUE
-#&gt; </div></pre>
+#&gt; 
+#&gt; $show_progress
+#&gt; [1] FALSE
+#&gt; </div><div class='input'><span class='fu'>gdalcubes_options</span><span class='op'>(</span>threads<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span> <span class='co'># reset</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -222,7 +232,7 @@ rerunning the full data cube operation chain.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

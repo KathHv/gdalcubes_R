@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Helper function to define packed data exports by min / max values — pack_minmax • gdalcubes</title>
+<title>Page not found (404) • gdalcubes</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,15 +33,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Helper function to define packed data exports by min / max values — pack_minmax" />
-<meta property="og:description" content="This function can be used to define packed exports in write_ncdf
-and write_tif. It will generate scale and offset values with maximum precision (unless simplify=TRUE)." />
+<meta property="og:title" content="Page not found (404)" />
 
 
 
@@ -60,7 +58,7 @@ and write_tif. It will generate scale and offset values with maximum precision (
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -72,7 +70,7 @@ and write_tif. It will generate scale and offset values with maximum precision (
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">gdalcubes</a>
+        <a class="navbar-link" href="index.html">gdalcubes</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
@@ -80,13 +78,13 @@ and write_tif. It will generate scale and offset values with maximum precision (
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -96,12 +94,12 @@ and write_tif. It will generate scale and offset values with maximum precision (
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/MODIS.html">1. Processing MODIS data with gdalcubes</a>
+      <a href="articles/MODIS.html">1. Processing MODIS data with gdalcubes</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -122,74 +120,23 @@ and write_tif. It will generate scale and offset values with maximum precision (
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Helper function to define packed data exports by min / max values</h1>
-    <small class="dont-index">Source: <a href='https://github.com/appelmar/gdalcubes_R/blob/master/R/cube.R'><code>R/cube.R</code></a></small>
-    <div class="hidden name"><code>pack_minmax.Rd</code></div>
+      <h1>Page not found (404)</h1>
     </div>
 
-    <div class="ref-description">
-    <p>This function can be used to define packed exports in <code><a href='write_ncdf.html'>write_ncdf</a></code>
-and <code><a href='write_tif.html'>write_tif</a></code>. It will generate scale and offset values with maximum precision (unless simplify=TRUE).</p>
-    </div>
+Content not found. Please use links in the navbar.
 
-    <pre class="usage"><span class='fu'>pack_minmax</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"int16"</span>, <span class='va'>min</span>, <span class='va'>max</span>, simplify <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>type</th>
-      <td><p>target data type of packed values (one of "uint8", "uint16", "uint32", "int16", or "int32")</p></td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td><p>numeric; minimum value(s) of original values, will be packed to the 2nd lowest value of the target data type</p></td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td><p>numeric; maximum value(s) in original scale, will be packed to the highest value of the target data type</p></td>
-    </tr>
-    <tr>
-      <th>simplify</th>
-      <td><p>logical; round resulting scale and offset to power of 10 values</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Nodata values will be mapped to the lowest value of the target data type.</p>
-<p>Arguments min and max must have length 1 or length equal to the number of bands of the data cube to be exported. In the former
-case, the same values are used for all bands of the exported target cube, whereas the latter case allows to use different 
-ranges for different bands.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Using simplify=TRUE will round scale values to the next smaller power of 10.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>ndvi_packing</span> <span class='op'>=</span> <span class='fu'>pack_minmax</span><span class='op'>(</span>type<span class='op'>=</span><span class='st'>"int16"</span>, min<span class='op'>=</span><span class='op'>-</span><span class='fl'>1</span>, max<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>ndvi_packing</span>
-</div><div class='output co'>#&gt; $type
-#&gt; [1] "int16"
-#&gt; 
-#&gt; $offset
-#&gt; [1] 0
-#&gt; 
-#&gt; $scale
-#&gt; [1] 3.051851e-05
-#&gt; 
-#&gt; $nodata
-#&gt; [1] -32768
-#&gt; </div><div class='input'>
-</div></pre>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
+
 
 
       <footer>
