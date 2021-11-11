@@ -23,7 +23,7 @@
 #' @export
 stac_image_collection <- function(s, out_file = tempfile(fileext = ".sqlite"), 
                                   asset_names = NULL, asset_regex = NULL, 
-                                  url_fun = function(x) {paste0("/vsicurl/", x)},
+                                  url_fun = function(x) {paste0("/vsiaz/", x)},
                                   property_filter = NULL, skip_image_metadata = FALSE) {
   SUBBAND_SPLIT_CHAR = ":"
   if (!is.list(s)) {
